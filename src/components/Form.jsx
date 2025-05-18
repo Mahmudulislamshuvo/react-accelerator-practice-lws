@@ -1,39 +1,33 @@
 import { useState } from "react";
 
-export default function Form() {
-  const [inputs, setInputs] = useState([
-    {
-      id: 1,
-      label: "input",
-    },
-  ]);
+const initialItems = [
+  { title: "pretzels", id: 0 },
+  { title: "crispy seaweed", id: 1 },
+  { title: "granola bar", id: 2 },
+];
 
-  const handleInputs = () => {
-    const inputnumber = inputs[inputs.length - 1].id + 1;
-    setInputs([
-      ...inputs,
-      {
-        id: inputnumber,
-        label: "input",
-      },
-    ]);
-  };
+export default function Menu() {
+  const [items, setItems] = useState(initialItems);
+  const [selectedItem, setSelectedItem] = useState(items[0]);
 
   return (
-    <div>
-      {inputs.map((input) => (
-        <div
-          key={input.id}
-          style={{
-            marginBottom: "5px",
-          }}
-        >
-          <input className="border" type="text" label={input.label} />
-        </div>
-      ))}
-      <div style={{ marginTop: "20px" }}>
-        <button onClick={handleInputs}>Add Input</button>
-      </div>
-    </div>
+    <>
+      <h2>What's your travel snack?</h2>
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            {item.title}{" "}
+            <button
+              onClick={() => {
+                setSelectedItem(item);
+              }}
+            >
+              Choose
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>You picked {selectedItem.title}.</p>
+    </>
   );
 }
