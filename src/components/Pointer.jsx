@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 const Pointer = () => {
-  const [x, setX] = useState(0);
-  const [y, sety] = useState(0);
+  const [position, setPosition] = useState({
+    x: 0,
+    y: 0,
+  });
 
   const handlePointerMove = (e) => {
-    setX(e.pageX);
-    sety(e.pageY);
+    setPosition({ x: e.pageX, y: e.pageY });
   };
 
   return (
@@ -28,7 +29,7 @@ const Pointer = () => {
             top: -30,
             width: 20,
             height: 20,
-            transform: `translate(${x}px, ${y}px)`,
+            transform: `translate(${position.x}px, ${position.y}px)`,
           }}
         />
       </div>
