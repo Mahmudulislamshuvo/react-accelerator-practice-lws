@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { initialTravelPlan } from "../data/places-normalized";
+import { initialTravelPlan } from "../../data/places-normalized";
 import PlaceTree from "./PlaceTree";
 
 export default function TravelPlan() {

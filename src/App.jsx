@@ -1,9 +1,14 @@
-import Accordian from "./components/Accordian";
-import TravelPlan from "./components/TravelPlan";
-import "./styles.css";
+import React from "react";
+import Menu from "./components/Others/Form";
+import Test from "./components/Others/Test";
+import TaskApp from "./components/3.12/Main";
 
-function App() {
-  return <Accordian />;
-}
+const App = () => {
+  return (
+    <div>
+      <TaskApp />
+    </div>
+  );
+};
 
 export default App;

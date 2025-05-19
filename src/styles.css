@@ -46,11 +46,14 @@ ul {
   padding-inline-start: 20px;
 }
 
-h3,
-p {
-  margin: 5px 0px;
+button {
+  margin: 5px;
 }
-.panel {
-  padding: 10px;
-  border: 1px solid #aaa;
+li {
+  list-style-type: none;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
 }
