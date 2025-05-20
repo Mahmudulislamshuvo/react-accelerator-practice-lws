@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import AddTask from "./AddTask";
 import TaskList from "./TaskList.jsx";
 import { initialTasks } from "../../data/data3.12.js";
+import AppReducer from "../../reducer/taskReducer.js";
+import { useImmerReducer } from "use-immer";
 
 export default function TaskApp() {
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, dispatch] = useImmerReducer(AppReducer, initialTasks);
 
   const getNextid = (data) => {
     const maxId = data.reduce((prev, current) =>
@@ -15,29 +17,25 @@ export default function TaskApp() {
 
   //  Handlers
   const handleAddtask = (text) => {
-    setTasks([
-      ...tasks,
-      {
-        id: getNextid(tasks),
-        text: text,
-        done: false,
-      },
-    ]);
+    dispatch({
+      type: "added",
+      text,
+      id: getNextid(tasks),
+    });
   };
 
   const handleChangeTask = (task) => {
-    const nextTask = tasks.map((t) => {
-      if (t.id === task.id) {
-        return task;
-      } else {
-        return t;
-      }
+    dispatch({
+      type: "changed",
+      task,
     });
-    setTasks(nextTask);
   };
 
   const handleDeleteTask = (taskid) => {
-    setTasks(tasks.filter((item) => item.id !== taskid));
+    dispatch({
+      type: "deleted",
+      id: taskid,
+    });
   };
 
   return (
@@ -52,5 +50,3 @@ export default function TaskApp() {
     </>
   );
 }
-
-let nextId = 3;
