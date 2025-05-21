@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TaskContext, TaskdispatchContext } from "../../context/Taskcontext";
 
-const Task = ({ task, onChangeTask, onDeleteTask }) => {
+const Task = ({ task }) => {
   const [isEditing, setisEditing] = useState(false);
+  const dispatch = useContext(TaskdispatchContext);
 
   let taskContent;
 
@@ -13,9 +15,12 @@ const Task = ({ task, onChangeTask, onDeleteTask }) => {
           className="border"
           value={task.text}
           onChange={(e) => {
-            onChangeTask({
-              ...task,
-              text: e.target.value,
+            dispatch({
+              type: "changed",
+              task: {
+                ...task,
+                text: e.target.value,
+              },
             });
           }}
         />
@@ -37,15 +42,27 @@ const Task = ({ task, onChangeTask, onDeleteTask }) => {
         <input
           type="checkbox"
           checked={task.done}
-          onChange={(e) =>
-            onChangeTask({
-              ...task,
-              done: e.target.checked,
-            })
-          }
+          onChange={(e) => {
+            dispatch({
+              type: "changed",
+              task: {
+                ...task,
+                done: e.target.checked,
+              },
+            });
+          }}
         />
         {taskContent}
-        <button onClick={() => onDeleteTask(task.id)}>delete</button>
+        <button
+          onClick={() => {
+            dispatch({
+              type: "deleted",
+              id: task.id,
+            });
+          }}
+        >
+          delete
+        </button>
       </label>
     </div>
   );

@@ -1,16 +1,15 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Task from "./Task";
+import { TaskContext } from "../../context/Taskcontext";
 
-export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
+export default function TaskList() {
+  const tasks = useContext(TaskContext);
+
   return (
     <ul>
       {tasks.map((task) => (
         <li key={task.id} style={{ listStyle: "none" }}>
-          <Task
-            task={task}
-            onChangeTask={onChangeTask}
-            onDeleteTask={onDeleteTask}
-          />
+          <Task task={task} />
         </li>
       ))}
     </ul>
