@@ -1,12 +1,11 @@
-import React from "react";
-import Menu from "./components/Others/Form";
-import Test from "./components/Others/Test";
-import TaskApp from "./components/3.12/Main";
+import Page from "./components/3.16/Page";
+import ProfilePage from "./components/3.17/ProfilePage";
+import "./styles.css";
 
 const App = () => {
   return (
     <div>
-      <TaskApp />
+      <ProfilePage />
     </div>
   );
 };

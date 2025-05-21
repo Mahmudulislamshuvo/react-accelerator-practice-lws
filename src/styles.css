@@ -46,14 +46,13 @@ ul {
   padding-inline-start: 20px;
 }
 
-button {
+.section {
+  padding: 10px;
   margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
 }
-li {
-  list-style-type: none;
-}
-ul,
-li {
-  margin: 0;
-  padding: 0;
+
+.fancy {
+  border: 4px dashed pink;
 }
